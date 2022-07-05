@@ -21,4 +21,5 @@ urlpatterns = [
     path('auth/', include('account.urls')),
     path('feedback/', include('feedback.urls')),
     path('movie/', include('movie.urls')),
+    path('cinema/', include('cinema.urls')),
 ]
