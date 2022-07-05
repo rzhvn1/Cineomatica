@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils import timezone
+from cinema.models import Room
 
 class MovieFormat(models.Model):
     name = models.CharField(max_length=55, unique=True)
-    price = models.PositiveIntegerField()
+    price = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}:{self.price}"
@@ -29,4 +30,14 @@ class AboutMovie(models.Model):
 
     def __str__(self):
         return self.title
+
+class ShowTime(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    movie_format = models.ForeignKey(MovieFormat, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+
+
+
 
