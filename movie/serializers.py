@@ -2,6 +2,24 @@ from rest_framework import serializers
 from .models import Movie, AboutMovie
 import datetime
 
+
+class AboutMovieSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AboutMovie
+        fields = ['id', 'movie', 'title', 'description', 'year', 'director', 'genre', 'actor', 'country']
+
+        extra_kwargs = {
+            "movie": {"required":True},
+            "title": {"required":True},
+            "description": {"required":True},
+            "year": {"required":True},
+            "director": {"required":True},
+            "genre": {"required":True},
+            "actor": {"required":True},
+            "country": {"required":True},
+        }
+
 class MovieSerializer(serializers.ModelSerializer):
 
     movie_status = serializers.SerializerMethodField(read_only=True)
@@ -15,7 +33,7 @@ class MovieSerializer(serializers.ModelSerializer):
             "age_limit": {"required":True},
             "start_date": {"required":True},
             "end_date": {"required":True},
-            "movie_status": {"required":False}
+            "movie_status": {"required":False},
         }
 
     @staticmethod
@@ -27,3 +45,5 @@ class MovieSerializer(serializers.ModelSerializer):
         if obj.start_date > now:
             obj.movie_status = 'Upcoming'
             return obj.movie_status
+
+
