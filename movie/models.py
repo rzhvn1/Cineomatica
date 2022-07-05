@@ -18,7 +18,7 @@ class Movie(models.Model):
         return self.title
 
 class AboutMovie(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='about_movie')
     title = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     year = models.CharField(max_length=255, blank=True, null=True)
