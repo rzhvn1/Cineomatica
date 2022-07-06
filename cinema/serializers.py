@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Cinema, Room, Seat
+from .models import Cinema, Room, Seat, RoomType
 
 class CinemaSerializer(serializers.ModelSerializer):
 
@@ -24,6 +24,17 @@ class SeatSerializer(serializers.ModelSerializer):
             "row_number": {"required":True},
             "seat_number": {"required":True},
             "room": {"required":True}
+        }
+
+class RoomTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = RoomType
+        fields = ['id', 'name', 'price']
+
+        extra_kwargs = {
+            "name":{"required":True},
+            "price":{"required":True}
         }
 
 class RoomSerializer(serializers.ModelSerializer):
