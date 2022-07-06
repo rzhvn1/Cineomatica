@@ -34,7 +34,7 @@ class AboutMovie(models.Model):
 class ShowTime(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     movie_format = models.ForeignKey(MovieFormat, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='showtime')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
