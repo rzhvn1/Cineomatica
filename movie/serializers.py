@@ -1,7 +1,18 @@
 from rest_framework import serializers
-from .models import Movie, AboutMovie, ShowTime
+from .models import Movie, AboutMovie, ShowTime, MovieFormat
 import datetime
 
+
+class MovieFormatSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MovieFormat
+        fields = ['id', 'name', 'price']
+
+        extra_kwargs = {
+            "name":{"required":True},
+            "price":{"required":True}
+        }
 
 class AboutMovieSerializer(serializers.ModelSerializer):
 
