@@ -1,9 +1,10 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CinemaModelViewSet, RoomModelViewSet, SeatModelViewSet
+from .views import CinemaModelViewSet, RoomModelViewSet, SeatModelViewSet, RoomTypeModelViewSet
 
 router = DefaultRouter()
 router.register(r"seat", SeatModelViewSet, basename="seat")
+router.register(r"room-type", RoomTypeModelViewSet, basename="room-type")
 router.register(r"room", RoomModelViewSet, basename="room")
 router.register(r"", CinemaModelViewSet, basename="cinema")
 
