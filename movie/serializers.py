@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, AboutMovie
+from .models import Movie, AboutMovie, ShowTime
 import datetime
 
 
@@ -45,5 +45,19 @@ class MovieSerializer(serializers.ModelSerializer):
         if obj.start_date > now:
             obj.movie_status = 'Upcoming'
             return obj.movie_status
+
+class ShowTimeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ShowTime
+        fields = ['id', 'movie', 'movie_format', 'room', 'start_time', 'end_time']
+
+        extra_kwargs = {
+            "movie":{"required":True},
+            "movie_format":{"required":True},
+            "room":{"required":True},
+            "start_time":{"required":True},
+            "end_time":{"required":True}
+        }
 
 
