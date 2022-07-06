@@ -1,8 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import FeedbackModelViewSet
+from .views import FeedbackModelViewSet, FeedbackTypeModelViewSet
 
 router = DefaultRouter()
+router.register(r"feedback-type", FeedbackTypeModelViewSet, basename="feedback-type")
 router.register(r"", FeedbackModelViewSet, basename="feedback")
 
 urlpatterns = [
