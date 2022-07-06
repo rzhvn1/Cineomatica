@@ -1,5 +1,15 @@
 from rest_framework import serializers
-from .models import Feedback
+from .models import Feedback, FeedbackType
+
+class FeedbackTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FeedbackType
+        fields = ['id', 'name']
+
+        extra_kwargs = {
+            "name":{"required":True}
+        }
 
 class FeedbackSerializer(serializers.ModelSerializer):
 
