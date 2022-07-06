@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
-from .serializers import FeedbackSerializer
-from .models import Feedback
+from .serializers import FeedbackSerializer, FeedbackTypeSerializer
+from .models import Feedback, FeedbackType
+from .permissions import IsAdminUserOrReadOnly
+
+class FeedbackTypeModelViewSet(viewsets.ModelViewSet):
+    serializer_class = FeedbackTypeSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+    queryset = FeedbackType.objects.all()
 
 class FeedbackModelViewSet(viewsets.ModelViewSet):
     serializer_class = FeedbackSerializer
