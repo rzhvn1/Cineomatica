@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'feedback',
     'movie',
     'cinema',
+    'order',
 ]
 
 MIDDLEWARE = [
