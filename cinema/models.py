@@ -20,4 +20,9 @@ class Room(models.Model):
     name = models.CharField(max_length=55, unique=True)
     type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+
+class Seat(models.Model):
+    row_number = models.PositiveIntegerField(blank=True, null=True)
+    seat_number = models.PositiveIntegerField(blank=True, null=True)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="seat")
     
