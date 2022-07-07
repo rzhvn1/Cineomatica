@@ -33,6 +33,7 @@ class TicketSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         instance.booking_by = user
         if validated_data.get('payment_method'):
+            instance.payment_method = validated_data.get('payment_method', instance.payment_method)
             order = Order.objects.create(user=user, total_price=instance.price)
             instance.order = order
         instance.save()
