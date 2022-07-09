@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from .serializers import OrderSerializer, TicketTypeSerializer, TicketSerializer
 from .models import Order, TicketType, Ticket
@@ -24,5 +23,3 @@ class TicketModelViewSet(viewsets.ModelViewSet):
     serializer_class = TicketSerializer
     permission_classes = [permissions.IsAuthenticated]
     queryset = Ticket.objects.all()
-
-
