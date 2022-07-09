@@ -29,6 +29,7 @@ class TicketSerializer(serializers.ModelSerializer):
             "booking_by":{"required":False}
         }
 
+
     def update(self, instance, validated_data):
         user = self.context['request'].user
         instance.booking_by = user
@@ -41,12 +42,25 @@ class TicketSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
 
+    order = TicketSerializer(read_only=True, many=True)
+    movie = serializers.SerializerMethodField(read_only=True)
+
+
     class Meta:
         model = Order
-        fields = ['id', 'user', 'total_price']
+        fields = ['id', 'user', 'total_price', 'order', 'movie']
 
         extra_kwargs = {
             "user":{"required":False},
             "total_price":{"required":False}
         }
+
+    def get_movie(self, obj):
+        tickets = obj.order.all()
+        for ticket in tickets:
+            obj.movie = ticket.show_time.movie.title
+        obj.save()
+        return obj.movie
+
+
 
