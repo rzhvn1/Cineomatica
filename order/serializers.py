@@ -30,6 +30,13 @@ class TicketSerializer(serializers.ModelSerializer):
         }
 
 
+    def validate(self, attrs):
+        ticket_pk = self.context['view'].kwargs['pk']
+        ticket = Ticket.objects.get(pk=ticket_pk)
+        if not ticket.booking_by or ticket.booking_by == self.context['request'].user:
+            return attrs
+        raise serializers.ValidationError("This seat is already reserved!")
+
     def update(self, instance, validated_data):
         user = self.context['request'].user
         instance.booking_by = user
