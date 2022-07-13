@@ -31,7 +31,10 @@ class TicketSerializer(serializers.ModelSerializer):
 
 
     def validate(self, attrs):
-        ticket_pk = self.context['view'].kwargs['pk']
+        try:
+            ticket_pk = self.context['view'].kwargs['pk']
+        except:
+            return attrs
         ticket = Ticket.objects.get(pk=ticket_pk)
         if not ticket.booking_by or ticket.booking_by == self.context['request'].user:
             return attrs
@@ -49,25 +52,41 @@ class TicketSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
 
-    order = TicketSerializer(read_only=True, many=True)
     movie = serializers.SerializerMethodField(read_only=True)
-
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'total_price', 'order', 'movie']
+        fields = ['id', 'user', 'total_price', 'movie']
 
         extra_kwargs = {
             "user":{"required":False},
             "total_price":{"required":False}
         }
 
-    def get_movie(self, obj):
-        tickets = obj.order.all()
-        for ticket in tickets:
-            obj.movie = ticket.show_time.movie.title
-        obj.save()
-        return obj.movie
+    def to_representation(self, instance):
+        user = self.context['request'].user
+        if user.is_superuser:
+            representation = {
+                'month':instance['month'],
+                'total_income':instance['total_income']
+            }
+            return representation
+        else:
+            orders = Order.objects.filter(user=user)
+            for order in orders:
+                ticket = Ticket.objects.get(order=order)
+                instance.movie = ticket.show_time.movie.title
+            representation = {
+                'id':instance.id,
+                'user':instance.user.id,
+                'total_price':instance.total_price,
+                'movie':instance.movie
+            }
+            return representation
+
+
+
+
 
 
 
