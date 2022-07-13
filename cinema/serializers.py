@@ -26,6 +26,16 @@ class SeatSerializer(serializers.ModelSerializer):
             "room": {"required":True}
         }
 
+    #creating matrix of seats
+    def create(self, validated_data):
+        global seats
+        row_number = validated_data.pop('row_number')
+        seat_number = validated_data.pop('seat_number')
+        for row in range(1, row_number + 1):
+            for seat in range(1, seat_number + 1):
+                seats = Seat.objects.create(row_number=row, seat_number=seat, **validated_data)
+        return seats
+
 class RoomTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -41,7 +51,7 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = ['id', 'name', 'type', 'cinema', 'seats']
+        fields = ['id', 'name', 'type', 'cinema']
 
         extra_kwargs = {
             "name": {"required":True},
