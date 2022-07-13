@@ -1,5 +1,5 @@
 from django.contrib.auth.password_validation import validate_password
-from .models import CustomUser
+from .models import CustomUser, ClubCard
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
@@ -72,3 +72,15 @@ class LogoutSerializer(serializers.Serializer):
             RefreshToken(self.token).blacklist()
         except TokenError:
             self.fail("bad_token")
+
+class ClubCardSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ClubCard
+        fields = ['id', 'balance', 'discount', 'user']
+
+        extra_kwargs = {
+            "balance":{"required":False},
+            "discount":{"required":False},
+            "user":{"required":False}
+        }
