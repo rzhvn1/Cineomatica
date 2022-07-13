@@ -23,4 +23,13 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+class ClubCard(models.Model):
+    balance = models.IntegerField(default=0)
+    discount = models.FloatField(default=0.1)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.balance
+
+
 
