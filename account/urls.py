@@ -3,13 +3,15 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     CustomUserRegisterViewSet,
     UpdatePassword,
-    LogoutView
+    LogoutView,
+    ClubCardModelViewSet
 )
 from rest_framework_simplejwt import views as jwt_views
 
 
 router = DefaultRouter()
 router.register(r"register", CustomUserRegisterViewSet, basename="register")
+router.register(r"club-card", ClubCardModelViewSet, basename="club-card")
 
 urlpatterns = [
     path("", include(router.urls)),
