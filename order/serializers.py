@@ -74,7 +74,10 @@ class OrderSerializer(serializers.ModelSerializer):
         else:
             orders = Order.objects.filter(user=user)
             for order in orders:
-                ticket = Ticket.objects.get(order=order)
+                try:
+                    ticket = Ticket.objects.get(order=order)
+                except:
+                    raise serializers.ValidationError("No tickets")
                 instance.movie = ticket.show_time.movie.title
             representation = {
                 'id':instance.id,
