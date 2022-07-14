@@ -1,5 +1,6 @@
 from django.contrib.auth.password_validation import validate_password
 from .models import CustomUser, ClubCard
+from order.models import Order
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
@@ -75,6 +76,8 @@ class LogoutSerializer(serializers.Serializer):
 
 class ClubCardSerializer(serializers.ModelSerializer):
 
+    balance = serializers.SerializerMethodField()
+
     class Meta:
         model = ClubCard
         fields = ['id', 'balance', 'discount', 'user']
@@ -84,3 +87,17 @@ class ClubCardSerializer(serializers.ModelSerializer):
             "discount":{"required":False},
             "user":{"required":False}
         }
+
+    def get_balance(self, obj):
+        orders = Order.objects.filter(user=obj.user)
+        balance = 0
+        for i in orders:
+            balance += i.total_price
+            if balance > 50000:
+                obj.discount = 0.15
+            if balance > 75000:
+                obj.discount = 0.2
+            if balance > 100000:
+                obj.discount = 0.3
+        obj.save()
+        return balance
