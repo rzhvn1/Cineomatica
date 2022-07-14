@@ -2,6 +2,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.reverse import reverse
 from rest_framework import status
 from ..models import CustomUser
+from order.models import Order
 
 
 class TestCustomUserRegisterSerializer(APITestCase):
@@ -81,3 +82,34 @@ class TestLogoutSerializer(APITestCase):
         data = {"refresh": "1"}
         self.response = self.client.post(self.url, data, format="json")
         self.assertEqual(self.response.status_code, status.HTTP_400_BAD_REQUEST)
+
+class TestClubCardSerializer(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user = CustomUser.objects.create_user(username="rzhvn", email="rzhvn@gmail.com", password="erzhan123", age=23)
+        self.res = self.client.post(
+            reverse("token_obtain_pair"),
+            {"username": "rzhvn", "password": "erzhan123"},
+        )
+        access_token = self.res.data["access"]
+        self.client.credentials(HTTP_AUTHORIZATION="Bearer " + access_token)
+
+        self.url = reverse("club-card-list")
+
+    def test_club_card_get_balance_over_50000(self):
+        order = Order.objects.create(user=self.user, total_price=51000)
+        self.clubcard = self.client.post(self.url, {}, format='json')
+        self.response = self.client.get(self.url)
+        self.assertEqual(self.response.status_code, status.HTTP_200_OK)
+
+    def test_club_card_get_balance_over_75000(self):
+        order = Order.objects.create(user=self.user, total_price=76000)
+        self.clubcard = self.client.post(self.url, {}, format='json')
+        self.response = self.client.get(self.url)
+        self.assertEqual(self.response.status_code, status.HTTP_200_OK)
+
+    def test_club_card_get_balance_over_100000(self):
+        order = Order.objects.create(user=self.user, total_price=101000)
+        self.clubcard = self.client.post(self.url, {}, format='json')
+        self.response = self.client.get(self.url)
+        self.assertEqual(self.response.status_code, status.HTTP_200_OK)
