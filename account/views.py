@@ -49,8 +49,10 @@ class LogoutView(generics.GenericAPIView):
 
 class ClubCardModelViewSet(viewsets.ModelViewSet):
     serializer_class = ClubCardSerializer
-    queryset = ClubCard.objects.all()
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return ClubCard.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
