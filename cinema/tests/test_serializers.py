@@ -19,9 +19,6 @@ class TestSeatSerializer(APITestCase):
         self.url = reverse("seat-list")
 
     def test_seat_create_method(self):
-        # order = Order.objects.create(user=self.user, total_price=51000)
-        # self.clubcard = self.client.post(self.url, {}, format='json')
-        # self.response = self.client.get(self.url)
         cinema = Cinema.objects.create(name='Cosmopark')
         room_type = RoomType.objects.create(name="Demir", price=200)
         room = Room.objects.create(name="Hall 1", type=room_type, cinema=cinema)
