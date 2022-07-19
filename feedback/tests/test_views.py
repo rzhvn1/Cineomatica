@@ -1,7 +1,7 @@
 from rest_framework.test import APITestCase, APIClient
-from ..models import Feedback, FeedbackType
-from rest_framework import status
 from rest_framework.reverse import reverse
+from rest_framework import status
+from ..models import FeedbackType
 from account.models import CustomUser
 
 class TestFeedbackModelViewSet(APITestCase):
