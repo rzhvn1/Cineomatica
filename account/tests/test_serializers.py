@@ -108,19 +108,19 @@ class TestClubCardSerializer(APITestCase):
         self.url = reverse("club-card-list")
 
     def test_club_card_get_balance_over_50000(self):
-        order = Order.objects.create(user=self.user, total_price=51000)
+        Order.objects.create(user=self.user, total_price=51000)
         self.clubcard = self.client.post(self.url, {}, format="json")
         self.response = self.client.get(self.url)
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)
 
     def test_club_card_get_balance_over_75000(self):
-        order = Order.objects.create(user=self.user, total_price=76000)
+        Order.objects.create(user=self.user, total_price=76000)
         self.clubcard = self.client.post(self.url, {}, format="json")
         self.response = self.client.get(self.url)
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)
 
     def test_club_card_get_balance_over_100000(self):
-        order = Order.objects.create(user=self.user, total_price=101000)
+        Order.objects.create(user=self.user, total_price=101000)
         self.clubcard = self.client.post(self.url, {}, format="json")
         self.response = self.client.get(self.url)
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)
