@@ -114,7 +114,7 @@ class TestOrderSerializer(APITestCase):
         self.url = reverse("order-list")
 
     def test_no_tickets_to_representation_for_user_method(self):
-        order = Order.objects.create(user=self.user, total_price=200)
+        Order.objects.create(user=self.user, total_price=200)
         self.response = self.client.get(self.url)
         self.assertContains(self.response, text="No tickets", status_code=400)
 
@@ -187,5 +187,4 @@ class TestOrderSerializer(APITestCase):
         }
         self.ticket = self.client.put(f"{url}{ticket.id}/", data_ticket, format="json")
         self.response = self.client.get(self.url)
-        print(self.response.data)
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)
