@@ -6,7 +6,6 @@ class TicketTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TicketType
         fields = ["id", "name", "price"]
-
         extra_kwargs = {"name": {"required": True}, "price": {"required": True}}
 
 
@@ -23,7 +22,6 @@ class TicketSerializer(serializers.ModelSerializer):
             "payment_method",
             "booking_by",
         ]
-
         extra_kwargs = {
             "type": {"required": True},
             "seats": {"required": True},

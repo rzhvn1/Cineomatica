@@ -3,7 +3,7 @@ from .serializers import OrderSerializer, TicketTypeSerializer, TicketSerializer
 from .models import Order, TicketType, Ticket
 from .permissions import IsAdminUserOrReadOnly
 from django.db.models.functions import TruncMonth
-from django.db.models import Count, Sum
+from django.db.models import Sum
 
 
 class OrderModelViewSet(viewsets.ModelViewSet):
