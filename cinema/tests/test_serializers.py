@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.reverse import reverse
 from account.models import CustomUser
 from rest_framework import status
-from ..models import Seat, Cinema, RoomType, Room
+from ..models import Cinema, RoomType, Room
 
 
 class TestSeatSerializer(APITestCase):
