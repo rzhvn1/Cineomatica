@@ -7,14 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cinema', '0003_alter_seat_room'),
-        ('movie', '0004_showtime'),
+        ("cinema", "0003_alter_seat_room"),
+        ("movie", "0004_showtime"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='showtime',
-            name='room',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='showtime', to='cinema.room'),
+            model_name="showtime",
+            name="room",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="showtime",
+                to="cinema.room",
+            ),
         ),
     ]

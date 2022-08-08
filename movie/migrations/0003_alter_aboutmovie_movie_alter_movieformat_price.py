@@ -7,19 +7,24 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('movie', '0002_alter_aboutmovie_movie'),
+        ("movie", "0002_alter_aboutmovie_movie"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='aboutmovie',
-            name='movie',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='about_movie', to='movie.movie'),
+            model_name="aboutmovie",
+            name="movie",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="about_movie",
+                to="movie.movie",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='movieformat',
-            name='price',
+            model_name="movieformat",
+            name="price",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
     ]

@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cinema', '0003_alter_seat_room'),
+        ("cinema", "0003_alter_seat_room"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='seat',
-            name='row_number',
+            model_name="seat",
+            name="row_number",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='seat',
-            name='seat_number',
+            model_name="seat",
+            name="seat_number",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
     ]

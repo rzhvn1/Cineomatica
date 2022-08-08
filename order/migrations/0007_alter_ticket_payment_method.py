@@ -6,13 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('order', '0006_alter_ticket_booking_by'),
+        ("order", "0006_alter_ticket_booking_by"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ticket',
-            name='payment_method',
-            field=models.IntegerField(blank=True, choices=[(1, 'Credit Card'), (2, 'Balance.kg'), (3, 'Элсом'), (4, 'О! Деньги'), (5, 'Megapay')], null=True),
+            model_name="ticket",
+            name="payment_method",
+            field=models.IntegerField(
+                blank=True,
+                choices=[
+                    (1, "Credit Card"),
+                    (2, "Balance.kg"),
+                    (3, "Элсом"),
+                    (4, "О! Деньги"),
+                    (5, "Megapay"),
+                ],
+                null=True,
+            ),
         ),
     ]

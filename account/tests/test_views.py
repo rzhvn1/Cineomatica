@@ -7,7 +7,9 @@ from ..models import CustomUser
 class TestUpdatePassword(APITestCase):
     def setUp(self):
         self.client = APIClient()
-        CustomUser.objects.create_user(username="rzhvn", email="rzhvn@gmail.com", password="erzhan123", age=23)
+        CustomUser.objects.create_user(
+            username="rzhvn", email="rzhvn@gmail.com", password="erzhan123", age=23
+        )
         self.res = self.client.post(
             reverse("token_obtain_pair"),
             {"username": "rzhvn", "password": "erzhan123"},

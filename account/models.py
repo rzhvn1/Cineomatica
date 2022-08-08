@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
 
+
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=30, unique=True)
     email = models.EmailField(verbose_name="email", max_length=255, unique=True)
@@ -15,13 +16,14 @@ class CustomUser(AbstractUser):
         max_length=255, verbose_name="phone", null=True, blank=True
     )
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'age']
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email", "first_name", "last_name", "age"]
 
     objects = CustomUserManager()
 
     def __str__(self):
         return self.username
+
 
 class ClubCard(models.Model):
     balance = models.IntegerField(default=0)
@@ -30,6 +32,3 @@ class ClubCard(models.Model):
 
     def __str__(self):
         return f"{self.balance}"
-
-
-

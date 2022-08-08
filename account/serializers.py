@@ -50,6 +50,7 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+
 class ChangePasswordSerializer(serializers.Serializer):
 
     old_password = serializers.CharField(required=True)
@@ -58,6 +59,7 @@ class ChangePasswordSerializer(serializers.Serializer):
     def validate_new_password(self, value):
         validate_password(value)
         return value
+
 
 class LogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()
@@ -74,18 +76,19 @@ class LogoutSerializer(serializers.Serializer):
         except TokenError:
             self.fail("bad_token")
 
+
 class ClubCardSerializer(serializers.ModelSerializer):
 
     balance = serializers.SerializerMethodField()
 
     class Meta:
         model = ClubCard
-        fields = ['id', 'balance', 'discount', 'user']
+        fields = ["id", "balance", "discount", "user"]
 
         extra_kwargs = {
-            "balance":{"required":False},
-            "discount":{"required":False},
-            "user":{"required":False}
+            "balance": {"required": False},
+            "discount": {"required": False},
+            "user": {"required": False},
         }
 
     def get_balance(self, obj):

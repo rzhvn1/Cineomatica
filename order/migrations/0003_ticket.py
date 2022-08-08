@@ -9,23 +9,76 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('movie', '0005_alter_showtime_room'),
-        ('cinema', '0004_alter_seat_row_number_alter_seat_seat_number'),
-        ('order', '0002_tickettype'),
+        ("movie", "0005_alter_showtime_room"),
+        ("cinema", "0004_alter_seat_row_number_alter_seat_seat_number"),
+        ("order", "0002_tickettype"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Ticket',
+            name="Ticket",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.PositiveIntegerField(default=0)),
-                ('payment_method', models.IntegerField(choices=[(1, 'Credit Card'), (2, 'Balance.kg'), (3, 'Элсом'), (4, 'О! Деньги'), (5, 'Megapay')])),
-                ('booking_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='order', to='order.order')),
-                ('seats', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='seats', to='cinema.seat')),
-                ('show_time', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='showtime', to='movie.showtime')),
-                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tickettype', to='order.tickettype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("price", models.PositiveIntegerField(default=0)),
+                (
+                    "payment_method",
+                    models.IntegerField(
+                        choices=[
+                            (1, "Credit Card"),
+                            (2, "Balance.kg"),
+                            (3, "Элсом"),
+                            (4, "О! Деньги"),
+                            (5, "Megapay"),
+                        ]
+                    ),
+                ),
+                (
+                    "booking_by",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="order",
+                        to="order.order",
+                    ),
+                ),
+                (
+                    "seats",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="seats",
+                        to="cinema.seat",
+                    ),
+                ),
+                (
+                    "show_time",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="showtime",
+                        to="movie.showtime",
+                    ),
+                ),
+                (
+                    "type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tickettype",
+                        to="order.tickettype",
+                    ),
+                ),
             ],
         ),
     ]

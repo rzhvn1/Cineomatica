@@ -8,6 +8,7 @@ class FeedbackType(models.Model):
     def __str__(self):
         return self.name
 
+
 class Feedback(models.Model):
     rate_choices = [
         (1, "1"),
@@ -20,4 +21,3 @@ class Feedback(models.Model):
     type = models.ForeignKey(FeedbackType, on_delete=models.CASCADE)
     text = models.TextField(blank=True, null=True)
     rate = models.IntegerField(choices=rate_choices)
-

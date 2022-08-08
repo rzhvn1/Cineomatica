@@ -4,7 +4,7 @@ from .views import (
     CustomUserRegisterViewSet,
     UpdatePassword,
     LogoutView,
-    ClubCardModelViewSet
+    ClubCardModelViewSet,
 )
 from rest_framework_simplejwt import views as jwt_views
 
