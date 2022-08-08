@@ -21,8 +21,8 @@ class TestMovieSerializer(APITestCase):
         data = {
             "title":"Тор: Любовь и гром",
             "age_limit":12,
-            "start_date":"2022-07-30",
-            "end_date":"2022-08-30"
+            "start_date":"2023-08-01",
+            "end_date":"2023-08-30"
         }
         self.movie = self.client.post(self.url, data, format='json')
         self.response = self.client.get(self.url)
