@@ -1,5 +1,5 @@
 import datetime
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 from .serializers import (
     MovieSerializer,
     AboutMovieSerializer,

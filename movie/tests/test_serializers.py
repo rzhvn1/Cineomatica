@@ -2,7 +2,6 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.reverse import reverse
 from rest_framework import status
 from account.models import CustomUser
-from ..models import Movie
 
 
 class TestMovieSerializer(APITestCase):
