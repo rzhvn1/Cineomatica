@@ -74,5 +74,4 @@ class TestTicketSerializer(APITestCase):
             "payment_method":1
         }
         self.repsonse = self.client.put(f"{self.url}{ticket.id}/", data, format='json')
-        print(self.repsonse.data)
         self.assertEqual(self.repsonse.status_code, status.HTTP_200_OK)
