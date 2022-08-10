@@ -1,11 +1,8 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import (
-    MovieModelViewSet,
-    AboutMovieModelViewSet,
-    ShowTimeModelViewSet,
-    MovieFormatModelViewSet,
-)
+
+from .views import (AboutMovieModelViewSet, MovieFormatModelViewSet,
+                    MovieModelViewSet, ShowTimeModelViewSet)
 
 router = DefaultRouter()
 router.register(r"movie-format", MovieFormatModelViewSet, basename="movie-format")

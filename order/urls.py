@@ -1,6 +1,8 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import OrderModelViewSet, TicketTypeModelViewSet, TicketModelViewSet
+
+from .views import (OrderModelViewSet, TicketModelViewSet,
+                    TicketTypeModelViewSet)
 
 router = DefaultRouter()
 router.register(r"ticket", TicketModelViewSet, basename="ticket")

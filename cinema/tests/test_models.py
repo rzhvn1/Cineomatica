@@ -1,5 +1,6 @@
 from django.test import TestCase
-from ..models import Cinema, RoomType, Room, Seat
+
+from ..models import Cinema, Room, RoomType, Seat
 
 
 class TestCinemaModel(TestCase):

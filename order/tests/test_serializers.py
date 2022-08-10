@@ -1,10 +1,12 @@
-from rest_framework.test import APITestCase, APIClient
-from rest_framework.reverse import reverse
 from rest_framework import status
+from rest_framework.reverse import reverse
+from rest_framework.test import APIClient, APITestCase
+
 from account.models import CustomUser
-from ..models import Ticket, TicketType, Order
 from cinema.models import Cinema, Room, RoomType, Seat
 from movie.models import Movie, MovieFormat, ShowTime
+
+from ..models import Order, Ticket, TicketType
 
 
 class TestTicketSerializer(APITestCase):

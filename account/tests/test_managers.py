@@ -1,5 +1,6 @@
-from ..models import CustomUser
 from django.test import TestCase
+
+from ..models import CustomUser
 
 
 class TestCustomUserManager(TestCase):

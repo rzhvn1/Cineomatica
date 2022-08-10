@@ -1,8 +1,10 @@
 from django.test import TestCase
-from ..models import Order, TicketType, Ticket
+
 from account.models import CustomUser
-from cinema.models import Seat, Cinema, RoomType, Room
-from movie.models import ShowTime, Movie, MovieFormat
+from cinema.models import Cinema, Room, RoomType, Seat
+from movie.models import Movie, MovieFormat, ShowTime
+
+from ..models import Order, Ticket, TicketType
 
 
 class TestOrderModel(TestCase):

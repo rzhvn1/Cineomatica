@@ -1,9 +1,11 @@
-from rest_framework import viewsets, permissions
-from .serializers import OrderSerializer, TicketTypeSerializer, TicketSerializer
-from .models import Order, TicketType, Ticket
-from .permissions import IsAdminUserOrReadOnly
-from django.db.models.functions import TruncMonth
 from django.db.models import Sum
+from django.db.models.functions import TruncMonth
+from rest_framework import permissions, viewsets
+
+from .models import Order, Ticket, TicketType
+from .permissions import IsAdminUserOrReadOnly
+from .serializers import (OrderSerializer, TicketSerializer,
+                          TicketTypeSerializer)
 
 
 class OrderModelViewSet(viewsets.ModelViewSet):

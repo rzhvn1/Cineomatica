@@ -1,13 +1,11 @@
 import datetime
+
 from rest_framework import viewsets
-from .serializers import (
-    MovieSerializer,
-    AboutMovieSerializer,
-    ShowTimeSerializer,
-    MovieFormatSerializer,
-)
+
+from .models import AboutMovie, Movie, MovieFormat, ShowTime
 from .permissions import IsAdminUserOrReadOnly
-from .models import Movie, AboutMovie, ShowTime, MovieFormat
+from .serializers import (AboutMovieSerializer, MovieFormatSerializer,
+                          MovieSerializer, ShowTimeSerializer)
 
 
 class MovieModelViewSet(viewsets.ModelViewSet):

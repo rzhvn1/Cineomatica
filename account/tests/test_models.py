@@ -1,5 +1,6 @@
 from django.test import TestCase
-from ..models import CustomUser, ClubCard
+
+from ..models import ClubCard, CustomUser
 
 
 class TestCustomUserModel(TestCase):

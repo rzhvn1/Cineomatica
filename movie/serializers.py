@@ -1,6 +1,8 @@
-from rest_framework import serializers
-from .models import Movie, AboutMovie, ShowTime, MovieFormat
 import datetime
+
+from rest_framework import serializers
+
+from .models import AboutMovie, Movie, MovieFormat, ShowTime
 
 
 class MovieFormatSerializer(serializers.ModelSerializer):

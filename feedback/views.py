@@ -1,7 +1,8 @@
-from rest_framework import viewsets, permissions
-from .serializers import FeedbackSerializer, FeedbackTypeSerializer
+from rest_framework import permissions, viewsets
+
 from .models import Feedback, FeedbackType
 from .permissions import IsAdminUserOrReadOnly
+from .serializers import FeedbackSerializer, FeedbackTypeSerializer
 
 
 class FeedbackTypeModelViewSet(viewsets.ModelViewSet):

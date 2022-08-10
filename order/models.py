@@ -1,4 +1,5 @@
 from django.db import models
+
 from account.models import CustomUser
 from cinema.models import Seat
 from movie.models import ShowTime

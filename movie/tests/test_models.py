@@ -1,5 +1,6 @@
 from django.test import TestCase
-from ..models import MovieFormat, Movie, AboutMovie
+
+from ..models import AboutMovie, Movie, MovieFormat
 
 
 class TestMovieFormatModel(TestCase):

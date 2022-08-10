@@ -1,11 +1,8 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import (
-    CinemaModelViewSet,
-    RoomModelViewSet,
-    SeatModelViewSet,
-    RoomTypeModelViewSet,
-)
+
+from .views import (CinemaModelViewSet, RoomModelViewSet, RoomTypeModelViewSet,
+                    SeatModelViewSet)
 
 router = DefaultRouter()
 router.register(r"seat", SeatModelViewSet, basename="seat")

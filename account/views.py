@@ -1,12 +1,10 @@
-from rest_framework import mixins, viewsets, permissions, status, views, generics
+from rest_framework import (generics, mixins, permissions, status, views,
+                            viewsets)
 from rest_framework.response import Response
-from .models import CustomUser, ClubCard
-from .serializers import (
-    CustomUserRegisterSerializer,
-    ChangePasswordSerializer,
-    LogoutSerializer,
-    ClubCardSerializer,
-)
+
+from .models import ClubCard, CustomUser
+from .serializers import (ChangePasswordSerializer, ClubCardSerializer,
+                          CustomUserRegisterSerializer, LogoutSerializer)
 
 
 class CustomUserRegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):

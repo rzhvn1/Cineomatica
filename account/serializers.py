@@ -1,8 +1,10 @@
 from django.contrib.auth.password_validation import validate_password
-from .models import CustomUser, ClubCard
-from order.models import Order
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+
+from order.models import Order
+
+from .models import ClubCard, CustomUser
 
 
 class CustomUserRegisterSerializer(serializers.ModelSerializer):

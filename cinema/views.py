@@ -1,12 +1,9 @@
 from rest_framework import viewsets
-from .models import Cinema, Room, Seat, RoomType
-from .serializers import (
-    CinemaSerializer,
-    RoomSerializer,
-    SeatSerializer,
-    RoomTypeSerializer,
-)
+
+from .models import Cinema, Room, RoomType, Seat
 from .permissions import IsAdminUserOrReadOnly
+from .serializers import (CinemaSerializer, RoomSerializer, RoomTypeSerializer,
+                          SeatSerializer)
 
 
 class CinemaModelViewSet(viewsets.ModelViewSet):

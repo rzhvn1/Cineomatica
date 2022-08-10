@@ -1,8 +1,10 @@
-from rest_framework.test import APITestCase, APIClient
-from rest_framework.reverse import reverse
 from rest_framework import status
-from ..models import CustomUser
+from rest_framework.reverse import reverse
+from rest_framework.test import APIClient, APITestCase
+
 from order.models import Order
+
+from ..models import CustomUser
 
 
 class TestCustomUserRegisterSerializer(APITestCase):

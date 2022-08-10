@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Cinema, Room, Seat, RoomType
+
+from .models import Cinema, Room, RoomType, Seat
 
 
 class CinemaSerializer(serializers.ModelSerializer):

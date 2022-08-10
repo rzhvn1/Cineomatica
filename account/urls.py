@@ -1,13 +1,9 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import (
-    CustomUserRegisterViewSet,
-    UpdatePassword,
-    LogoutView,
-    ClubCardModelViewSet,
-)
 from rest_framework_simplejwt import views as jwt_views
 
+from .views import (ClubCardModelViewSet, CustomUserRegisterViewSet,
+                    LogoutView, UpdatePassword)
 
 router = DefaultRouter()
 router.register(r"register", CustomUserRegisterViewSet, basename="register")
