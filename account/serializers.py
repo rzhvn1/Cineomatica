@@ -98,11 +98,11 @@ class ClubCardSerializer(serializers.ModelSerializer):
         balance = 0
         for i in orders:
             balance += i.total_price
-            if balance > 50000:
-                obj.discount = 0.15
-            if balance > 75000:
-                obj.discount = 0.2
-            if balance > 100000:
-                obj.discount = 0.3
+        if balance > 50000:
+            obj.discount = 0.15
+        if balance > 75000:
+            obj.discount = 0.2
+        if balance > 100000:
+            obj.discount = 0.3
         obj.save()
         return balance
